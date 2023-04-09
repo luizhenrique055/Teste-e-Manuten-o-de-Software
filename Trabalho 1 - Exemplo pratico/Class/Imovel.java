@@ -6,14 +6,14 @@ public abstract class Imovel {
 
     // construtor
     Imovel(double valorAluguel) {
-        // if (valorAluguel > 0)
+        if (valorAluguel > 0)
             this.valorAluguel = valorAluguel;
-        // else
-        //     this.valorAluguel = 0;
+        else
+            this.valorAluguel = 0;
     }
 
     // metodos
-    protected abstract double valorTotal();
+    public abstract double valorTotal();
 
     public double getValorAluguel() {
         return valorAluguel;

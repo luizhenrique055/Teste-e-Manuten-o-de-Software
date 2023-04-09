@@ -1,19 +1,21 @@
 package Class;
-
-public class Apartamento extends Imovel {
+public class Apartamento extends Imovel{
 
     private double valorCondominio;
 
-    Apartamento(double valorAluguel, double valorCondominio) {
+    public Apartamento(double valorAluguel, double valorCondominio){
         super(valorAluguel);
 
-        this.valorCondominio = valorCondominio;
+        if (valorCondominio > 0)
+            this.valorCondominio = valorCondominio;
+        else 
+            this.valorCondominio = 0;
 
     }
 
     @Override
-    protected double valorTotal() {
+    public double valorTotal() {
         return getValorAluguel() + this.valorCondominio;
     }
-
+    
 }

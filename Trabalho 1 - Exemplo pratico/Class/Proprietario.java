@@ -8,13 +8,14 @@ public class Proprietario {
     private int quantidadeImoveis;
 
     // construtor
-    Proprietario() {
+    public Proprietario() {
         this.quantidadeImoveis = 0;
     }
 
     // metodos
     public void adicionarImovel(Imovel imovel){
         this.listaImoveis.add(this.quantidadeImoveis,imovel);
+        quantidadeImoveis++;
     }
 
     public double precoTotalAlugueis(){
@@ -25,5 +26,9 @@ public class Proprietario {
         }
 
         return total;
+    }
+
+    public int getQuantidadeImoveis() {
+        return quantidadeImoveis;
     }
 }

@@ -1,5 +1,5 @@
 package Class;
-class Casa extends Imovel{
+public class Casa extends Imovel{
 
     private double valorSeguroIncendio;
 
@@ -13,7 +13,7 @@ class Casa extends Imovel{
     }
 
     @Override
-    protected double valorTotal() {
+    public double valorTotal() {
         return getValorAluguel() + this.valorSeguroIncendio;
     }
 
