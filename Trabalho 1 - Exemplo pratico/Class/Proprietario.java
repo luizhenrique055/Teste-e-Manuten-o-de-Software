@@ -15,7 +15,7 @@ public class Proprietario {
     // metodos
     public void adicionarImovel(Imovel imovel){
         this.listaImoveis.add(this.quantidadeImoveis,imovel);
-        quantidadeImoveis++;
+        this.quantidadeImoveis++;
     }
 
     public double precoTotalAlugueis(){
