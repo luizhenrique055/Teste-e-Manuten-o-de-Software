@@ -1,0 +1,222 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Sistema</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: Sistema (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Sistema</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    41,9%
+  </span>
+  <span class="absValue">
+    (18/43)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;import java.time.LocalDate;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.TreeMap;
+&nbsp;
+&nbsp;public class Sistema {
+&nbsp;
+&nbsp;    // armazenamento de informações
+<b class="fc">&nbsp;    private final TreeMap&lt;LocalDate, ArrayList&lt;Lembrete&gt;&gt; mapLembretes = new TreeMap&lt;LocalDate, ArrayList&lt;Lembrete&gt;&gt;();</b>
+&nbsp;
+&nbsp;    // construtor
+<b class="fc">&nbsp;    public Sistema() {</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // métodos do sistema
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Recebe um lembrete e o armazena.
+&nbsp;     * &lt;p&gt;
+&nbsp;     * Caso ja exista um dia para a data ela ser adicionada nesse dia. Caso não
+&nbsp;     * exista uma data um novo dia sera criado.
+&nbsp;     */
+&nbsp;    public void adicionarLembrete(Lembrete lembrete) {
+&nbsp;
+<b class="fc">&nbsp;        LocalDate dataChave = lembrete.getData();</b>
+&nbsp;
+<b class="fc">&nbsp;        if (!mapLembretes.containsKey(dataChave)) {</b>
+<b class="fc">&nbsp;            ArrayList&lt;Lembrete&gt; dia = new ArrayList&lt;Lembrete&gt;(); // cria novo dia</b>
+<b class="fc">&nbsp;            mapLembretes.put(dataChave, dia); // adiciona novo dia</b>
+<b class="fc">&nbsp;            mapLembretes.get(dataChave).add(lembrete); // adiciona lembrete ao dia criado</b>
+<b class="fc">&nbsp;        } else {</b>
+<b class="nc">&nbsp;            mapLembretes.get(dataChave).add(lembrete);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        System.out.println(&quot;Lembrete adicionado a lista!&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Recebe uma data existente no sistema e o numero do lembrete especificado no
+&nbsp;     * dia que ele foi criado e remove da lista.
+&nbsp;     *
+&nbsp;     * @param data           LocalDate
+&nbsp;     * @param numeroLembrete int
+&nbsp;     */
+&nbsp;    public void remocaoLembrete(LocalDate data, int numeroLembrete) {
+&nbsp;
+<b class="fc">&nbsp;        ArrayList&lt;Lembrete&gt; listaDiaAtual = null;</b>
+&nbsp;
+<b class="fc">&nbsp;        if (mapLembretes.isEmpty()) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Erro: Não possui nenhum lembrete armazenado para remoção!&quot;);</b>
+<b class="fc">&nbsp;        } else if (!mapLembretes.containsKey(data)) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Erro: A data não condiz com nenhum lembrete no sistema!&quot;);</b>
+&nbsp;        } else {
+&nbsp;
+<b class="fc">&nbsp;            listaDiaAtual = mapLembretes.get(data);</b>
+&nbsp;
+<b class="fc">&nbsp;            if ((numeroLembrete - 1) &gt; listaDiaAtual.size()) {</b>
+<b class="nc">&nbsp;                System.out.println(&quot;O numero de lembrete não existe!&quot;);</b>
+<b class="fc">&nbsp;            } else if (listaDiaAtual.size() == 1) {// correção para evitar OutOfBounds</b>
+<b class="fc">&nbsp;                mapLembretes.remove(mapLembretes.firstKey());</b>
+<b class="fc">&nbsp;                System.out.println(&quot;Lembrete removido com sucesso.&quot;);</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                listaDiaAtual.remove(numeroLembrete - 1); // numeroLembrete -1 porque o usuário ve começando com 1</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Lembrete removido com sucesso.&quot;);</b>
+&nbsp;            }
+&nbsp;
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Lista todos dias presentes em todas listas de dia.
+&nbsp;     */
+&nbsp;    public void listarLembretes() {
+&nbsp;
+<b class="nc">&nbsp;        if (mapLembretes.isEmpty())</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Ainda não possui lembretes!&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        for (LocalDate diaAtual : mapLembretes.keySet()) {</b>
+&nbsp;
+&nbsp;            // variaveis
+<b class="nc">&nbsp;            ArrayList&lt;Lembrete&gt; listaDiaAtual = null;</b>
+<b class="nc">&nbsp;            LocalDate dataDiaAtual = null;</b>
+<b class="nc">&nbsp;            int index = 0;</b>
+<b class="nc">&nbsp;            int numeroDoLembrete = 1;</b>
+<b class="nc">&nbsp;            String dataFormatada = null;</b>
+&nbsp;
+&nbsp;            // abstração de informações
+&nbsp;
+&nbsp;            // pega o valor da chave do mapa (lista de lembretes de um dia)
+<b class="nc">&nbsp;            listaDiaAtual = mapLembretes.get(diaAtual);</b>
+&nbsp;            // pega a LocalDate bruta no formato (yyy/MM/yy) dos lembretes do array
+<b class="nc">&nbsp;            dataDiaAtual = listaDiaAtual.get(index).getData();</b>
+&nbsp;            // transforma a LocalDate bruta em String no formato (dd/MM/yy)
+<b class="nc">&nbsp;            dataFormatada = ConversorDatas.localDateParaStringPadraoBrasil(dataDiaAtual);</b>
+&nbsp;
+<b class="nc">&nbsp;            index++; // muda o index da lista acessada na proxima iteração</b>
+&nbsp;
+<b class="nc">&nbsp;            System.out.println(&quot;--------------LEMBRETES DO DIA &quot; + dataFormatada + &quot;-----------&quot;);</b>
+&nbsp;
+&nbsp;            // mostra o método toString por padrão Java de todos objetos Lembrete iterados
+<b class="nc">&nbsp;            for (Lembrete listaDoDia : listaDiaAtual) {</b>
+<b class="nc">&nbsp;                System.out.println(&quot;\nLembrete numero: &quot; + numeroDoLembrete++);</b>
+<b class="nc">&nbsp;                System.out.println(listaDoDia + &quot;\n&quot;);</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;
+<b class="nc">&nbsp;            System.out.println(&quot;----------------------FIM DO DIA--------------------&quot;);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retorna q quantidade de dias únicos no sistema.
+&nbsp;     *
+&nbsp;     * @return int
+&nbsp;     */
+&nbsp;    public int tamanhoArmazenamento() {
+<b class="fc">&nbsp;        return mapLembretes.size();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-22 09:43</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ConversorDatas</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: ConversorDatas (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ConversorDatas</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66,7%
+  </span>
+  <span class="absValue">
+    (2/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90,9%
+  </span>
+  <span class="absValue">
+    (10/11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;import java.time.LocalDate;
+&nbsp;import java.time.format.DateTimeFormatter;
+&nbsp;
+<b class="nc">&nbsp;public class ConversorDatas {</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Recebe uma string no formato (dd/MM/yyy) e a converte para uma data no padrão
+&nbsp;     * Java LocalDate
+&nbsp;     *
+&nbsp;     * @param dataString String
+&nbsp;     * @return LocalDate yyyy-MM-dd
+&nbsp;     */
+&nbsp;    public static LocalDate stringParaDataPadraoJava(String dataString) {
+&nbsp;
+<b class="fc">&nbsp;        String dd =&quot;&quot;;</b>
+<b class="fc">&nbsp;        String mm = &quot;&quot;;</b>
+<b class="fc">&nbsp;        String yy = &quot;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;        dd = dataString.substring(0, 2);</b>
+<b class="fc">&nbsp;        mm = dataString.substring(3, 5);</b>
+<b class="fc">&nbsp;        yy = dataString.substring(6, 10);</b>
+&nbsp;
+&nbsp;        // conversão da String padrão dd/mm/yy para yy/mm/yyyy
+<b class="fc">&nbsp;        String anoFormatadoAmericano = yy + mm + dd;</b>
+&nbsp;
+&nbsp;        // conversão da String padrão dd/mm/yy para yy/mm/yyyy
+&nbsp;        // conversão paraLocalDate
+<b class="fc">&nbsp;        return LocalDate.parse(anoFormatadoAmericano, DateTimeFormatter.BASIC_ISO_DATE);</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Converte um objeto do tipo LocalDate(yy/mm/yyyy) para string formatada ao
+&nbsp;     * padrão brasileiro
+&nbsp;     *
+&nbsp;     * @param data LocalDate
+&nbsp;     * @return String data formatada padrão dd/mm/yy
+&nbsp;     */
+&nbsp;    public static String localDateParaStringPadraoBrasil(LocalDate data) {
+&nbsp;
+<b class="fc">&nbsp;        DateTimeFormatter formatacao = DateTimeFormatter.ofPattern(&quot;dd/MM/yyyy&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;        return data.format(formatacao);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-22 09:43</div>
+</div>
+</body>
+</html>

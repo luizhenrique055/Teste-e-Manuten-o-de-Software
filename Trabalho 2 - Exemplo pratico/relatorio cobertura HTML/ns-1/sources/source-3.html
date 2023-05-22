@@ -1,0 +1,209 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Lembrete</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: Lembrete (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Lembrete</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83,3%
+  </span>
+  <span class="absValue">
+    (5/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85%
+  </span>
+  <span class="absValue">
+    (17/20)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;import java.time.LocalDate;
+&nbsp;
+&nbsp;public class Lembrete implements Comparable&lt;Lembrete&gt; {
+&nbsp;
+&nbsp;    // atributos encapsulados
+&nbsp;    private String nome;
+&nbsp;    private String descricao;
+&nbsp;    private LocalDate data;
+&nbsp;
+&nbsp;    // construtor
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Construtor de lembrete.
+&nbsp;     * &lt;p&gt;
+&nbsp;     * Caso o nome seja vazio, branco ou null
+&nbsp;     * ira disparar uma exception IllegalArgumentException.
+&nbsp;     * &lt;p&gt;
+&nbsp;     * Caso a data seja anterior a data atual do sistema ira disparar uma
+&nbsp;     * IllegalArgumentException.
+&nbsp;     * &lt;p&gt;
+&nbsp;     * Caso a descrição tenha valor null ira disparar uma IllegalArgumentException.
+&nbsp;     *
+&nbsp;     * @param nome      String
+&nbsp;     * @param descricao String
+&nbsp;     * @param data      LocalDate
+&nbsp;     */
+<b class="fc">&nbsp;    public Lembrete(String nome, String descricao, LocalDate data) {</b>
+&nbsp;
+&nbsp;        // validação nome vazio
+<b class="fc">&nbsp;        if (nome.isEmpty() || nome.isBlank())</b>
+<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;A string não pode estar vazia&quot;);</b>
+&nbsp;        else
+<b class="fc">&nbsp;            this.nome = nome;</b>
+&nbsp;
+&nbsp;        // validação data valida
+<b class="fc">&nbsp;        if (data.isBefore(LocalDate.now()))</b>
+<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;A data e invalida&quot;);</b>
+&nbsp;        else
+<b class="fc">&nbsp;            this.data = data;</b>
+&nbsp;
+<b class="fc">&nbsp;        if (descricao != null)</b>
+<b class="fc">&nbsp;            this.descricao = descricao;</b>
+&nbsp;        else
+<b class="nc">&nbsp;            throw new IllegalArgumentException(&quot;A descrição tem valor null&quot;);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    // #region métodos virtuais sobrescritos
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+&nbsp;
+<b class="nc">&nbsp;        return &quot;\nData do lembrete: &quot; +</b>
+<b class="nc">&nbsp;                ConversorDatas.localDateParaStringPadraoBrasil(this.data) +</b>
+&nbsp;                &quot;\nNome do lembrete: &quot; +
+&nbsp;                this.nome +
+&nbsp;                &quot;\nDescrição: &quot; +
+&nbsp;                this.descricao;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int compareTo(Lembrete o) {
+<b class="fc">&nbsp;        if (this.data.isBefore(o.data)) {</b>
+<b class="fc">&nbsp;            return -1;</b>
+<b class="fc">&nbsp;        } else if (this.data.isAfter(o.data)) {</b>
+<b class="fc">&nbsp;            return 1;</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            return 0;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    // #endregion
+&nbsp;
+&nbsp;    // #region getters
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retorna nome do lembrete
+&nbsp;     *
+&nbsp;     * @return String nome
+&nbsp;     */
+&nbsp;    public String getNome() {
+<b class="fc">&nbsp;        return nome;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retorna descrição do lembrete
+&nbsp;     *
+&nbsp;     * @return String descricao
+&nbsp;     */
+&nbsp;    public String getDescricao() {
+<b class="fc">&nbsp;        return descricao;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retorna a data do lembrete no formato padrão do LocalDate
+&nbsp;     *
+&nbsp;     * @return LocalDate (yyy/mm/dd)
+&nbsp;     */
+&nbsp;    public LocalDate getData() {
+<b class="fc">&nbsp;        return data;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // #endregion
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-22 09:43</div>
+</div>
+</body>
+</html>
